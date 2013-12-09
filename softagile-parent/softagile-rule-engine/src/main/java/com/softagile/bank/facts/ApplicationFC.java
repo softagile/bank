@@ -3,9 +3,6 @@ package com.softagile.bank.facts;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
-import com.softagile.bank.domain.Account;
 
 public class ApplicationFC {
 
