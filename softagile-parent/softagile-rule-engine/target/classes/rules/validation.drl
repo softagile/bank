@@ -1,0 +1,32 @@
+package com.softagile.bank.facts
+
+import com.softagile.bank.facts.CountryFC
+import java.util.List
+ 
+global List countryCodes
+
+rule "country name cannot be empty or null"
+	no-loop 
+	when
+     	$co: CountryFC(name==null || name=="")
+	then
+		modify($co){
+		  setValid(false);
+		}
+		modify($co){
+	   	  addErrorMessage("country name cannot be null or empty");
+	    }
+end
+
+rule "country code is not valid"
+	no-loop 
+	when
+     	$co: CountryFC(name!=null, name not memberOf countryCodes) 
+	then
+		modify($co){
+		  setValid(false);
+		}
+		modify($co){
+	   	  addErrorMessage("country name " + $co.getName() +" is not valid");
+	    }
+end

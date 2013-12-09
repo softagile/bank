@@ -1,0 +1,185 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.softagile.demo</groupId>
+		<artifactId>softagile-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>softagile-service</artifactId>
+	<packaging>war</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.softagile.demo</groupId>
+			<artifactId>softagile-service-spec</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.softagile.demo</groupId>
+			<artifactId>softagile-rule-engine</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.softagile.demo</groupId>
+			<artifactId>softagile-repository</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>jsr311-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-jaxrs</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-xc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jamonapi</groupId>
+			<artifactId>jamon</artifactId>
+		</dependency>
+	</dependencies>
+	<build>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
+					<configuration>
+						<sources>
+							<source>src/itest/java/com/softagile/bank/service</source>
+						</sources>
+						<excludes>
+							<exclude>**/BDDFeatureIT*.java</exclude>
+							<exclude>**/Feature*.java</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${maven.war.plugin.version}</version>
+					<configuration>
+						<warName>softagile</warName>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>integration-tests</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>${maven.failsafe.plugin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>build-helper-maven-plugin</artifactId>
+						<version>${maven.build.helper.plugin.version}</version>
+						<executions>
+							<execution>
+								<id>add-source</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>add-test-source</goal>
+								</goals>
+								<configuration>
+									<sources>
+										<source>src/itest/java/com/softagile/bank/service</source>
+									</sources>
+									<excludes>
+										<exclude>**/BDDFeatureIT*.java</exclude>
+										<exclude>**/Feature*.java</exclude>
+									</excludes>
+								</configuration>
+							</execution>
+							<execution>
+								<id>add-resource</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>add-test-resource</goal>
+								</goals>
+								<configuration>
+									<resources>
+										<resource>
+											<directory>src/itest/resources</directory>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

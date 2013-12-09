@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:drools="http://drools.org/schema/drools-spring"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://drools.org/schema/drools-spring http://drools.org/schema/drools-spring.xsd">
+
+	<import resource="classpath:ehcache-drools-context.xml" />
+
+	<aop:aspectj-autoproxy proxy-target-class="false" />
+	<context:component-scan base-package="com.softagile.bank" />
+
+	<drools:grid-node id="node1" />
+
+	<drools:kbase id="panelExcellenceKbase" node="node1">
+		<drools:resources>
+			<drools:resource type="CHANGE_SET"
+				source="classpath:rules/rulesChangeset.xml" />
+		</drools:resources>
+		<drools:configuration>
+			<drools:assert-behavior mode="EQUALITY" />
+		</drools:configuration>
+	</drools:kbase>
+
+	<drools:ksession id="ksession" type="stateless"
+		kbase="panelExcellenceKbase" node="node1" />
+
+</beans>

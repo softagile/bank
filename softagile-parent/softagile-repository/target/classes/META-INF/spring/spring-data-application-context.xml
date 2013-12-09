@@ -1,0 +1,76 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:orcl="http://www.springframework.org/schema/data/orcl" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                      http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+                      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+                      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+                      http://www.springframework.org/schema/data/orcl http://www.springframework.org/schema/data/orcl/spring-data-orcl-1.0.xsd
+                      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd" profile="prod">
+
+	<jpa:repositories base-package="com.softagile.bank"
+		entity-manager-factory-ref="productionEntityManagerFactory"
+		transaction-manager-ref="jpaTransactionManager" />
+
+	<bean id="hibernateExceptionTranslator"
+		class="org.springframework.orm.hibernate4.HibernateExceptionTranslator"></bean>
+
+	<context:annotation-config />
+	<tx:annotation-driven transaction-manager="jpaTransactionManager" />
+
+	<bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="dataSource" ref="racDataSource" />
+		<property name="entityManagerFactory" ref="productionEntityManagerFactory" />
+		<property name="persistenceUnitName" value="pu2" />	
+	</bean>
+
+	<context:property-placeholder location="classpath*:orcl.properties"
+		ignore-resource-not-found="true" ignore-unresolvable="true" />
+
+	<orcl:pooling-datasource id="racDataSource"
+		url="${conn.url}" ONS-configuration="nodes=${conn.nodes}" username="${conn.username}"
+		password="${conn.password}" connection-caching-enabled="true"
+		connection-properties-prefix="conn"
+		connection-cache-properties-prefix="cache"
+		fast-connection-failover-enabled="true" properties-location="classpath:orcl.properties">
+	</orcl:pooling-datasource>
+
+	<aop:config>
+		<aop:advisor
+			pointcut="@annotation(org.springframework.transaction.annotation.Transactional)"
+			advice-ref="racFailoverInterceptor" order="1" />
+	</aop:config>
+
+	<orcl:rac-failover-interceptor id="racFailoverInterceptor" />
+
+	<bean id="productionEntityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="packagesToScan" value="com.softagile.bank" />
+		<property name="dataSource" ref="racDataSource" />
+		<property name="persistenceUnitName" value="pu2" />
+		<property name="jpaVendorAdapter" ref="jpaAdapter" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.generate_statistics">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.default_schema">PE</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="jpaAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="showSql" value="true" />
+		<property name="databasePlatform" value="org.hibernate.dialect.Oracle10gDialect" />
+		<property name="generateDdl" value="false" />
+	</bean>
+
+</beans>

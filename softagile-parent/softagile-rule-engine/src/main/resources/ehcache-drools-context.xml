@@ -1,0 +1,42 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/cache 
+        http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+	<cache:annotation-driven mode="aspectj" cache-manager="droolsCacheManager"/>
+
+	<bean id="droolsCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
+		p:cache-manager-ref="droolsEhcache" />
+	
+	 <bean id="droolsEhcache"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+		p:config-location="classpath:ehcache-drools-config.xml" />
+
+	<bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+		<property name="locateExistingServerIfPossible" value="true" />
+	</bean>
+
+	<bean
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="net.sf.ehcache.management.ManagementService" />
+		<property name="targetMethod" value="registerMBeans" />
+		<property name="arguments">
+			<list>
+				<ref bean="droolsEhcache" />
+				<ref bean="mbeanServer" />
+				<value>false</value>
+				<value>false</value>
+				<value>false</value>
+				<value>true</value>
+			</list>
+		</property>
+	</bean>
+</beans>

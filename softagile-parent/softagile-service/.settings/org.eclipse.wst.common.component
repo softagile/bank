@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="softagile-service">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/itest/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/itest/resources"/>
+        <dependent-module archiveName="softagile-service-spec-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/softagile-service-spec/softagile-service-spec">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="softagile-rule-engine-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/softagile-rule-engine/softagile-rule-engine">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="softagile-repository-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/softagile-repository/softagile-repository">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="softagile-domain-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/softagile-domain/softagile-domain">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/softagile-service/target/classes"/>
+        <property name="context-root" value="softagile"/>
+    </wb-module>
+</project-modules>
