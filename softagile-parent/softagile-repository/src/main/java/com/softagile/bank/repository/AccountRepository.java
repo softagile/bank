@@ -8,7 +8,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.softagile.bank.domain.Account;
 import com.softagile.bank.domain.AccountType;
-
+/**
+ * 
+ * @author BKalali
+ *
+ */
 public interface AccountRepository extends JpaRepository<Account, Long>{
 	
 	List<Account> findByCustomers(Set customers);

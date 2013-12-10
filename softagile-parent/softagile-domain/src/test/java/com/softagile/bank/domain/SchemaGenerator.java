@@ -10,7 +10,7 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
- * The SchemaGenerator for creating Panel Excellence DDL schema.
+ * The SchemaGenerator for creating DDL schema.
  * 
  * @author bkalali
  */
@@ -21,7 +21,7 @@ public class SchemaGenerator {
 
     public static void main(String[] args) throws IOException {
         if (args.length == 0) {
-            exportSchema("core", "./target/pe-schema.sql", true, true);
+            exportSchema("core", "./target/bank-schema.sql", true, true);
         } else {
             exportSchema(args[0], args[1], Boolean.parseBoolean(args[2]), Boolean.parseBoolean(args[3]));
         }

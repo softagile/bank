@@ -10,7 +10,11 @@ import com.softagile.bank.domain.Country;
 
 import java.lang.String;
 import java.util.List;
-
+/**
+ * 
+ * @author BKalali
+ *
+ */
 public interface CountryRepository extends JpaRepository<Country, Long> {
 
     Country findCountryByCountryCode(String countryCode);

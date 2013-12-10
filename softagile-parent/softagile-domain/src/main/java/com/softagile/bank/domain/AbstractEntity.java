@@ -11,6 +11,11 @@ import com.softagile.bank.audit.AuditableColumns;
 import com.softagile.bank.audit.AuditableColumnsEntityListener;
 import com.softagile.bank.audit.EntityWithAuditableColumns;
 
+/**
+ * 
+ * @author BKalali
+ *
+ */
 @MappedSuperclass
 @EntityListeners(AuditableColumnsEntityListener.class)
 public class AbstractEntity implements EntityWithAuditableColumns {
