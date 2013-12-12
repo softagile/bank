@@ -4,8 +4,6 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
-import java.io.File;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +11,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.jdbc.datasource.DataSourceUtils;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 import com.softagile.bank.api.service.PanelExcellenceService;
 import com.softagile.bank.domain.Panel;
@@ -37,7 +32,6 @@ public class PanelistsForCountryFeature {
 
     @Before
     public void intFeature() throws SQLException {
-        populateHSQLDatabase();
         assertThat(panelExcellenceService, is(notNullValue()));
     }
 
@@ -67,24 +61,4 @@ public class PanelistsForCountryFeature {
         assertThat(actualIds, is(excepctedIds));
     }
 
-    public void populateHSQLDatabase() throws SQLException {
-        File rootOfApp = new File("");
-        String absolutePath = rootOfApp.getAbsolutePath();
-        String absolutePathOfRepositoryProject = absolutePath.replace("softagile-service",
-            "softagile-repository");
-        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(new FileSystemResource(absolutePathOfRepositoryProject
-            + "/src/test/resources/paneldata.sql"));
-
-        Connection connection = null;
-
-        try {
-            connection = DataSourceUtils.getConnection(dataSource);
-            populator.populate(connection);
-        } finally {
-            if (connection != null) {
-                DataSourceUtils.releaseConnection(connection, dataSource);
-            }
-        }
-    }
 }

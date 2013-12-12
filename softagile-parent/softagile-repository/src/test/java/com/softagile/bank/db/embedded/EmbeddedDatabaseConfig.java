@@ -1,14 +1,10 @@
 
 package com.softagile.bank.db.embedded;
 
-import java.util.Map;
-
 import javax.sql.DataSource;
 
-import org.hibernate.cache.ehcache.EhCacheRegionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;

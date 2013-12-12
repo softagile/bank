@@ -10,11 +10,14 @@ insert into Panel (id, company_id, currency_id, country_id) values (2, 1, 2, 1);
 
 insert into Account(id,accountType,openingDate,amount) values (1, 'CHECKING', '2000-01-01', 12998.45);
 insert into Account(id,accountType,openingDate,amount) values (2, 'SAVING', '2000-01-01', 22998.45);
+insert into Account(id,accountType,openingDate,amount) values (3, 'CHECKING', '2000-01-01', 100.45);
 
 insert into Customer(id,name,familyName,age)values(1,'Bahman','Kalali',28);
+insert into Customer(id,name,familyName,age)values(2,'Layen','Wiesendanger',16);
 
 insert into Customer_Account(CUST_ID,ACC_ID)values(1,1);
 insert into Customer_Account(CUST_ID,ACC_ID)values(1,2);
+insert into Customer_Account(CUST_ID,ACC_ID)values(2,3);
 
 
 

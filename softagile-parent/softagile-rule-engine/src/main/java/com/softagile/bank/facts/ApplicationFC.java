@@ -12,6 +12,9 @@ public class ApplicationFC {
 	private BigDecimal totalMoneyAsset;
 
 	public List<String> getVaidationMessages() {
+		if (vaidationMessages.size() == 0) {
+			vaidationMessages.add(new String("Customer can apply for loan"));
+		}
 		return vaidationMessages;
 	}
 
