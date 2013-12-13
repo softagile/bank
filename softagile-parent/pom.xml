@@ -84,8 +84,6 @@
 		know. -->
 	<dependencyManagement>
 		<dependencies>
-
-			<!-- Our stuff -->
 			<dependency>
 				<groupId>com.softagile.demo</groupId>
 				<artifactId>softagile-domain</artifactId>
@@ -107,7 +105,7 @@
 				<version>${project.version}</version>
 			</dependency>
 
-			<!-- Their stuff -->
+			<!-- Third part dependencies -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-envers</artifactId>
@@ -360,7 +358,7 @@
 				<scope>test</scope>
 			</dependency>
 
-			<!-- Spring & Spring Data JPA -->
+			<!-- Spring and Spring Data JPA -->
 			<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-jpa</artifactId>
@@ -491,5 +489,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
 </project>

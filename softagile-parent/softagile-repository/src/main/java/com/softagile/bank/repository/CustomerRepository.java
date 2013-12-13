@@ -20,4 +20,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 	List<Customer> findByAge(int age);
 	
 	List<Customer> findByFamilyName(String familyname);
+	
+	Customer findByNameIsNotNullAndFamilyNameIsNotNull(String name, String familyName);
+	
 }

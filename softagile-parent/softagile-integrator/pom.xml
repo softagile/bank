@@ -122,8 +122,8 @@
 						</executions>
 						<configuration>
 							<environmentVariables>
-								<conn.username>STSOPUSR</conn.username>
-								<conn.password>STSOPUSR86#</conn.password>
+								<conn.username>XXXXX</conn.username>
+								<conn.password>YYYYY</conn.password>
 								<conn.nodes>udev-scan.softagile.com:6200,udev-scan.softagile.com:6200</conn.nodes>
 								<conn.url>jdbc:oracle:thin:@(description=(address_list=(address=(host=udev-scan.softagile.com)(protocol=tcp)(port=1521))(address=(host=udev-scan.softagile.com)(protocol=tcp)(port=1521)))(connect_data=(service_name=softagile_bank)))</conn.url>
 							</environmentVariables>
