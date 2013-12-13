@@ -2,7 +2,6 @@ package com.softagile.bank.domain;
 
 import javax.persistence.Entity;
 
-import org.hibernate.annotations.Index;
 import org.hibernate.envers.Audited;
 
 @Entity

@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -24,48 +23,50 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //TODO the integrator needs to be refactored to use real database and real server, 
 //then create a bamboo plan to automate cucumber test cases  
 @Configuration
-@EnableJpaRepositories(basePackages="com.softagile.bank")
+@EnableJpaRepositories(basePackages = "com.softagile.bank")
 @EnableTransactionManagement
-@Profile(value="test")
+@Profile(value = "test")
 public class EmbeddedDatabaseConfig {
-    
-    @Bean
-    public DataSource dataSource() {
-        EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        return builder.setType(EmbeddedDatabaseType.HSQL).build();
-    }
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setDatabase(Database.HSQL);
-        vendorAdapter.setGenerateDdl(true);
+	@Bean
+	public DataSource dataSource() {
+		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+		return builder.setType(EmbeddedDatabaseType.HSQL).build();
+	}
 
-        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.softagile.bank");
-        factory.setPersistenceUnitName("pu1");
-        factory.getJpaPropertyMap().put("hibernate.cache.use_second_level_cache", Boolean.FALSE);
-        factory.setDataSource(dataSource());
-        return factory;
-    }
+	@Bean
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		vendorAdapter.setDatabase(Database.HSQL);
+		vendorAdapter.setGenerateDdl(true);
 
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        JpaTransactionManager txManager = new JpaTransactionManager();
-        txManager.setEntityManagerFactory(entityManagerFactory().getObject());
-        txManager.setPersistenceUnitName("pu1");
-        return txManager;
-    }
+		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+		factory.setJpaVendorAdapter(vendorAdapter);
+		factory.setPackagesToScan("com.softagile.bank");
+		factory.setPersistenceUnitName("pu1");
+		factory.getJpaPropertyMap().put(
+				"hibernate.cache.use_second_level_cache", Boolean.FALSE);
+		factory.setDataSource(dataSource());
+		return factory;
+	}
 
-    @Bean
-    public PersistenceAnnotationBeanPostProcessor getPersistenceAnnotationBeanPostProcessor() {
-        PersistenceAnnotationBeanPostProcessor processor = new PersistenceAnnotationBeanPostProcessor();
-        Map<String,String> units= new HashMap<String,String>();
-        units.put("pu1", "persis1");
-        units.put("pu2", "persis2");
-        processor.setPersistenceUnits(units);
-        processor.setDefaultPersistenceUnitName("pu1");
-        return processor;
-    }
+	@Bean
+	public PlatformTransactionManager transactionManager() {
+		JpaTransactionManager txManager = new JpaTransactionManager();
+		txManager.setEntityManagerFactory(entityManagerFactory().getObject());
+		txManager.setPersistenceUnitName("pu1");
+		return txManager;
+	}
+
+	@Bean
+	public PersistenceAnnotationBeanPostProcessor getPersistenceAnnotationBeanPostProcessor() {
+		PersistenceAnnotationBeanPostProcessor processor = new PersistenceAnnotationBeanPostProcessor();
+		Map<String, String> units = new HashMap<String, String>();
+		units.put("pu1", "persis1");
+		units.put("pu2", "persis2");
+		processor.setPersistenceUnits(units);
+		processor.setDefaultPersistenceUnitName("pu1");
+		return processor;
+	}
+
 }
