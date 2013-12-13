@@ -23,12 +23,12 @@ public class HttpHeaders {
         DateTime dt = new DateTime();
         DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
         String originationTimestamp = fmt.print(dt);
-        headers.add("SERVICE_ENV_FIELD", "DEV");
-        headers.add("SERVICE_FUNC_AREA_FIELD", "PE");
-        headers.add("TRACKING_ID_FIELD", randomUUIDString);
-        headers.add("ORIG_TIMESTAMP_FIELD", originationTimestamp);
-        headers.add("SRC_PROGRAM_FIELD", "HIPPO_CMS");
-        headers.add("HEADER_VERSION_FIELD", "1.1.0");
+        headers.add("SERVICE_ENV", "DEV");
+        headers.add("SERVICE_FUNC_AREA", "BANK");
+        headers.add("TRACKING_ID", randomUUIDString);
+        headers.add("ORIG_TIMESTAMP", originationTimestamp);
+        headers.add("SRC_PROGRAM_", "BANK_UI");
+        headers.add("HEADER_VERSION", "1.1.0");
         headers.add("validation", "no");
         return headers;
     }
