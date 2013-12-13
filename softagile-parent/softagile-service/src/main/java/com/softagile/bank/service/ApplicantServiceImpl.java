@@ -16,13 +16,13 @@ import com.softagile.bank.facts.ApplicationFC;
 import com.softagile.bank.requestreply.ApplicantReply;
 import com.softagile.bank.rule.engine.ApplicantValidator;
 
-@Service("ApplicantService")
-@Path("/Applicant")
 /**
  * 
  * @author bkalali
  *
  */
+@Service("ApplicantService")
+@Path("/Applicant")
 public class ApplicantServiceImpl implements ApplicantService {
 
 	@Autowired
@@ -39,8 +39,9 @@ public class ApplicantServiceImpl implements ApplicantService {
 		ApplicationFC applicationFC = applicantValidator.canApplyForLoan(customerId);
 		ApplicantReply applicantReply =  new ApplicantReply();
 		applicantReply.setValidApplicantForLoan(applicationFC.isValid());
-		applicantReply.setValidationMessage(applicationFC.getVaidationMessages());
+		applicantReply.setValidationMessage(applicationFC.getApplicantValidationStatus());
 		applicantReply.setCustomerId(customerId);
+		applicantReply.setStatus(applicationFC.getApplicantValidationStatus().toString());
 		return applicantReply;
 	}
 

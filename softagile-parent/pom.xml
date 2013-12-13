@@ -34,8 +34,6 @@
 		<maven.jar.plugin.version>2.4</maven.jar.plugin.version>
 		<maven.war.plugin.version>2.2</maven.war.plugin.version>
 
-		<eca.logging.logback.version>1.1.6-RELEASE</eca.logging.logback.version>
-
 		<springframework.version>3.1.2.RELEASE</springframework.version>
 		<aspectj.version>1.6.11</aspectj.version>
 
@@ -48,6 +46,7 @@
 
 		<joda.time.version>2.3</joda.time.version>
 		<slf4j.api.version>1.7.5</slf4j.api.version>
+		<log.back.classic.version>1.0.13</log.back.classic.version>
 		<commons.lang.version>2.3</commons.lang.version>
 		<ehcache.core.version>2.6.0</ehcache.core.version>
 
@@ -84,8 +83,6 @@
 		know. -->
 	<dependencyManagement>
 		<dependencies>
-
-			<!-- Our stuff -->
 			<dependency>
 				<groupId>com.softagile.demo</groupId>
 				<artifactId>softagile-domain</artifactId>
@@ -107,7 +104,7 @@
 				<version>${project.version}</version>
 			</dependency>
 
-			<!-- Their stuff -->
+			<!-- Third part dependencies -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-envers</artifactId>
@@ -360,7 +357,7 @@
 				<scope>test</scope>
 			</dependency>
 
-			<!-- Spring & Spring Data JPA -->
+			<!-- Spring and Spring Data JPA -->
 			<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-jpa</artifactId>
@@ -415,6 +412,13 @@
 				<version>${jamonapi.version}</version>
 				<scope>provided</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${log.back.classic.version}</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -426,6 +430,12 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
@@ -491,5 +501,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
 </project>

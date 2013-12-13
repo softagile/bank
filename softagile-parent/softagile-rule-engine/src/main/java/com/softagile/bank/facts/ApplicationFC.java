@@ -1,22 +1,19 @@
 package com.softagile.bank.facts;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * 
+ * @author ITJ6921
+ * 
+ */
 public class ApplicationFC {
 
 	private boolean valid = true;
-	private List<String> vaidationMessages = new ArrayList<String>();
+
 	private int age;
 	private BigDecimal totalMoneyAsset;
-
-	public List<String> getVaidationMessages() {
-		if (vaidationMessages.size() == 0) {
-			vaidationMessages.add(new String("Customer can apply for loan"));
-		}
-		return vaidationMessages;
-	}
+	private ApplicantValidationStatus validationStatus = ApplicantValidationStatus.VALID;
 
 	public int getAge() {
 		return age;
@@ -27,14 +24,6 @@ public class ApplicationFC {
 			totalMoneyAsset = new BigDecimal(0);
 		}
 		return totalMoneyAsset;
-	}
-
-	public void setVaidationMessages(List<String> vaidationMessages) {
-		this.vaidationMessages = vaidationMessages;
-	}
-
-	public void addValidationMessage(String vaidationMessage) {
-		vaidationMessages.add(vaidationMessage);
 	}
 
 	public void setAge(int age) {
@@ -55,6 +44,15 @@ public class ApplicationFC {
 
 	public void totalMoneyAsset(BigDecimal cachMoney) {
 		totalMoneyAsset = getTotalMoneyAsset().add(cachMoney);
+	}
+
+	public String getApplicantValidationStatus() {
+		return validationStatus.toString();
+	}
+
+	public void setApplicantValidationStatus(
+			ApplicantValidationStatus applicantValidationStatus) {
+		validationStatus = applicantValidationStatus;
 	}
 
 }

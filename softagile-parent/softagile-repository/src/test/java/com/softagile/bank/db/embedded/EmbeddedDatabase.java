@@ -21,7 +21,7 @@ public class EmbeddedDatabase {
     @PostConstruct
     protected void init() throws SQLException {
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(new ClassPathResource("paneldata.sql"));
+        populator.addScript(new ClassPathResource("testdata.sql"));
         Connection connection = null;
 
         try {

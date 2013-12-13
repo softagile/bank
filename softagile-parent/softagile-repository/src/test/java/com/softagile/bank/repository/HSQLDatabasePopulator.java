@@ -25,7 +25,7 @@ public abstract class HSQLDatabasePopulator {
     public void populateDatabase() throws SQLException {
 
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(new ClassPathResource("paneldata.sql"));
+        populator.addScript(new ClassPathResource("testdata.sql"));
         Connection connection = null;
 
         try {

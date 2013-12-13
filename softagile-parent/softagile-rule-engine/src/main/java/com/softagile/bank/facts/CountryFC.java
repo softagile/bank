@@ -2,7 +2,11 @@ package com.softagile.bank.facts;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 
+ * @author bkalali
+ *
+ */
 public class CountryFC {
     private String name;
     private boolean valid = true;
