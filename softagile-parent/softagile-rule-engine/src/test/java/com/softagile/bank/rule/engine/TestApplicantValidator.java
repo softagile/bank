@@ -58,7 +58,7 @@ public class TestApplicantValidator {
         replay(customerRepository);
         ApplicationFC applicationFC = applicantValidator.canApplyForLoan(1L);
 		assertThat(false, is(applicationFC.isValid()));
-		assertThat("customer age needs to be more than 18",is(applicationFC.getVaidationMessages().get(0)));
+		assertThat("customer age is=16 and needs to be more than 18 and total monetory is=570122 and need to be  more than $10000.00",is(applicationFC.getVaidationMessages().get(0)));
 	}
 
 	private Customer getCustomer(int age, BigDecimal checkingAmount,

@@ -16,13 +16,13 @@ import com.softagile.bank.facts.ApplicationFC;
 import com.softagile.bank.requestreply.ApplicantReply;
 import com.softagile.bank.rule.engine.ApplicantValidator;
 
-@Service("ApplicantService")
-@Path("/Applicant")
 /**
  * 
  * @author bkalali
  *
  */
+@Service("ApplicantService")
+@Path("/Applicant")
 public class ApplicantServiceImpl implements ApplicantService {
 
 	@Autowired
