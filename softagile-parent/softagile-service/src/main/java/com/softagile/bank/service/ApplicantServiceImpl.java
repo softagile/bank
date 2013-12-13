@@ -18,6 +18,11 @@ import com.softagile.bank.rule.engine.ApplicantValidator;
 
 @Service("ApplicantService")
 @Path("/Applicant")
+/**
+ * 
+ * @author bkalali
+ *
+ */
 public class ApplicantServiceImpl implements ApplicantService {
 
 	@Autowired
