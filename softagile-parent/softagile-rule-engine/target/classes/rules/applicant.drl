@@ -1,17 +1,44 @@
 package com.softagile.bank.facts
 
 import com.softagile.bank.facts.ApplicationFC
+import com.softagile.bank.facts.ApplicantValidationStatus
 import java.util.List
 
-rule "customer age cannot be less than supported age by bank"
+rule "age cannot be less than supported age by bank"
 	no-loop
 	when
-     	$app: ApplicationFC(age<18 || totalMoneyAsset<10000)
+     	$app1: ApplicationFC(age<18 && totalMoneyAsset>10000)
 	then
-		modify($app){
+		modify($app1){
 		  setValid(false);
 		}
-		modify($app){
-	   	  addValidationMessage("customer age is=" + $app.getAge() +" and needs to be more than 18 and total monetory is=" + $app.getTotalMoneyAsset() + " and need to be  more than $10000.00");
+	    modify($app1){
+	   	  setApplicantValidationStatus(ApplicantValidationStatus.AGE_NOT_VALID);
+	    }
+end
+
+rule "total monetrory asset cannot be less than what bank approved"
+	no-loop
+	when
+     	$app2: ApplicationFC(totalMoneyAsset<10000 && age>18)
+	then
+		modify($app2){
+		  setValid(false);
+		}
+	    modify($app2){
+	   	  setApplicantValidationStatus(ApplicantValidationStatus.MONEY_NOT_VALID);
+	    }
+end
+
+rule "total monetrory asset cannot be less than what bank approved and age approved"
+	no-loop
+	when
+     	$app2: ApplicationFC(totalMoneyAsset<10000 && age<18)
+	then
+		modify($app2){
+		  setValid(false);
+		}
+	    modify($app2){
+	   	  setApplicantValidationStatus(ApplicantValidationStatus.AGE_AND_MONEY_NOT_VALID);
 	    }
 end

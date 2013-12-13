@@ -1,7 +1,5 @@
 package com.softagile.bank.requestreply;
 
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -15,10 +13,13 @@ public class ApplicantReply extends ReplyStatus {
 	@XmlElement(namespace = "http://www.softagile.com/schema/bank/reply", required = true)
 	private boolean isValidApplicantForLoan;
 	@XmlElement(namespace = "http://www.softagile.com/schema/bank/reply")
-	private List<String> validationMessage;
+	private String validationMessage;
 	
 	@XmlElement(namespace = "http://www.softagile.com/schema/bank/reply")
 	private long customerId;
+	
+	@XmlElement(namespace = "http://www.softagile.com/schema/bank/reply")
+	private String status;
 
 	public boolean isValidApplicantForLoan() {
 		return isValidApplicantForLoan;
@@ -28,11 +29,11 @@ public class ApplicantReply extends ReplyStatus {
 		this.isValidApplicantForLoan = isValidApplicantForLoan;
 	}
 
-	public List<String> getValidationMessage() {
+	public String getValidationMessage() {
 		return validationMessage;
 	}
 
-	public void setValidationMessage(List<String> validationMessage) {
+	public void setValidationMessage(String validationMessage) {
 		this.validationMessage = validationMessage;
 	}
 
@@ -42,6 +43,14 @@ public class ApplicantReply extends ReplyStatus {
 
 	public void setCustomerId(long customerId) {
 		this.customerId = customerId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

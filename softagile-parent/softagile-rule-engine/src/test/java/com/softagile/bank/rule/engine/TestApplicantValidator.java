@@ -26,6 +26,11 @@ import com.softagile.bank.repository.CustomerRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:drools-context-test.xml" })
+/**
+ * 
+ * @author ITJ6921
+ *
+ */
 public class TestApplicantValidator {
 
 	@Autowired
@@ -58,7 +63,6 @@ public class TestApplicantValidator {
         replay(customerRepository);
         ApplicationFC applicationFC = applicantValidator.canApplyForLoan(1L);
 		assertThat(false, is(applicationFC.isValid()));
-		assertThat("customer age needs to be more than 18",is(applicationFC.getVaidationMessages().get(0)));
 	}
 
 	private Customer getCustomer(int age, BigDecimal checkingAmount,
