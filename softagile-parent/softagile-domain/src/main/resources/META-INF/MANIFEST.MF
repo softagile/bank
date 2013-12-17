@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1387569200913
+Build-Jdk: 1.7.0_45
+Built-By: ITJ6921
+Bundle-ManifestVersion: 2
+Bundle-Name: softagile-domain
+Bundle-SymbolicName: softagile-domain
+Bundle-Version: 0.0.1.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.softagile.bank.domain;uses:="com.softagile.bank.audi
+ t,javax.persistence,org.hibernate.envers,org.hibernate.annotations,java
+ x.validation.constraints";version="0.0.1.SNAPSHOT",com.softagile.bank.a
+ udit;uses:="javax.persistence";version="0.0.1.SNAPSHOT"
+Import-Package: javax.persistence,javax.validation.constraints,org.hiber
+ nate.annotations,org.hibernate.envers
+Originally-Created-By: Maven Integration for Eclipse
+Tool: Bnd-1.50.0
