@@ -49,8 +49,7 @@ public class ApplicantScenario {
 		assertThat(applicantReply.isValidApplicantForLoan(), is(false));
 	}
 
-	private ApplicantReply getApplicantReply(long customerId) throws JsonParseException, JsonMappingException
-			{
+	private ApplicantReply getApplicantReply(long customerId) throws JsonParseException, JsonMappingException			{
 		WebClient client = WebClient.create(EmbeddedTomcatTestSetup.REST_URI)
 				.headers(HttpHeaders.getHttpHeaders());
 		Response response = client.path("/Applicant/loan/").path(customerId)

@@ -2,10 +2,10 @@ package com.softagile.bank.domain;
 
 import javax.persistence.Entity;
 
-import org.hibernate.envers.Audited;
+
 
 @Entity
-@Audited
+
 public class Currency extends AbstractEntity {
 	
 	private String currencyCode;

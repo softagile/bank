@@ -4,11 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-
 @Entity
 @Table(name = "Panel")
-@Audited
+
 public class Panel extends AbstractEntity {
 
     @ManyToOne(optional = true)

@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.envers.Audited;
+
 
 @Entity
 @Table(name = "Country")
@@ -18,7 +18,7 @@ public class Country extends AbstractEntity  {
     private String countryCode;
    
     @NotNull
-    @Audited
+
     private String description;
     private String isoCountryCode;
     

@@ -2,10 +2,10 @@ package com.softagile.bank.domain;
 
 import javax.persistence.Entity;
 
-import org.hibernate.envers.Audited;
+
 
 @Entity
-@Audited
+
 public class Company extends AbstractEntity {
     private String companyName;
     private String companyCode;

@@ -11,6 +11,7 @@ public class ApplicationFC {
 
 	private boolean valid = true;
 
+	private long customerId;
 	private int age;
 	private BigDecimal totalMoneyAsset;
 	private ApplicantValidationStatus validationStatus = ApplicantValidationStatus.VALID;
@@ -53,6 +54,14 @@ public class ApplicationFC {
 	public void setApplicantValidationStatus(
 			ApplicantValidationStatus applicantValidationStatus) {
 		validationStatus = applicantValidationStatus;
+	}
+
+	public long getCustomerId() {
+		return customerId;
+	}
+
+	public void setcustomerId(long customerId) {
+		this.customerId = customerId;
 	}
 
 }
