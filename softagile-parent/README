@@ -1,0 +1,9 @@
+1) Install ojdbc6.jar with version 11.2.0.3 in local maven repository
+	mvn install:install-file -Dfile=C:\dev\thrirdparty\oracle\ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.3 -Dpackaging=jar
+2) Install ons.jar with version 10.2.0.2.0 in local maven repository
+	mvn install:install-file -Dfile=C:\dev\thrirdparty\oracle\ons.jar -DgroupId=com.oracle -DartifactId=ons -Dversion=10.2.0.2.0 -Dpackaging=jar
+3) Install Cucumber Editor Plug-ins
+	http://rlogiacco.github.com/Natural
+4) Install JBoss Drools Editor Plug-ins
+    http://download.jboss.org/drools/release/5.5.0.Final/org.drools.updatesite/
+    
