@@ -68,7 +68,7 @@ public class EmbeddedTomcatTestSetup {
             "softagile-repository");
         ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
         populator.addScript(new FileSystemResource(absolutePathOfRepositoryProject
-            + "/src/test/resources/paneldata.sql"));
+            + "/src/test/resources/testdata.sql"));
 
         Connection connection = null;
 
